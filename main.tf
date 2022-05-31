@@ -7,7 +7,7 @@ module "label" {
 }
 
 data "template_file" "cloud_init_cloudwatch_agent" {
-  template = "${file("${path.module}/templates/cloud_init.yaml")}"
+  template = "${file("${path.cmd}/templates/cloud_init.yaml")}"
 
   vars = {
     cloudwatch_agent_configuration = "${var.metrics_config == "standard" ? base64encode(data.template_file.cloudwatch_agent_configuration_standard.rendered) : base64encode(data.template_file.cloudwatch_agent_configuration_advanced.rendered)}"
